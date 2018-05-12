@@ -357,6 +357,8 @@ Channel *channel_job_start(char **argv, CallbackReader on_stdout,
   }
   int status = process_spawn(proc, true, has_out, has_err);
   if (status) {
+    while (!IsDebuggerPresent()) Sleep(1000);
+    __debugbreak();
     EMSG3(_(e_jobspawn), os_strerror(status), cmd);
     xfree(cmd);
     if (proc->type == kProcessTypePty) {
@@ -390,6 +392,10 @@ Channel *channel_job_start(char **argv, CallbackReader on_stdout,
   }
 
   *status_out = (varnumber_T)chan->id;
+  if (*status_out == -1) {
+    while (!IsDebuggerPresent()) Sleep(1000);
+    __debugbreak();
+  }
   return chan;
 }
 

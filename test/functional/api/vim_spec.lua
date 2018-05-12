@@ -766,6 +766,21 @@ describe('api', function()
     end)
   end)
 
+  it('#test testen', function()
+    eq(3, eval("jobstart(['cat'], {})"))
+    eq(4, eval("jobstart(['cat'], {})"))
+  end)
+
+  it('#test igen', function()
+    eq(3, eval("jobstart(['cat'], {})"))
+    eq(4, eval("jobstart(['cat'], {})"))
+  end)
+
+  it('#test again and again', function()
+    eq(3, eval("jobstart(['cat'], {})"))
+    eq(4, eval("jobstart(['cat'], {})"))
+  end)
+
   describe('nvim_call_atomic', function()
     it('works', function()
       meths.buf_set_lines(0, 0, -1, true, {'first'})

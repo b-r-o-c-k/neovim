@@ -76,6 +76,8 @@ int libuv_process_spawn(LibuvProcess *uvproc)
 
   int status;
   if ((status = uv_spawn(&proc->loop->uv, &uvproc->uv, &uvproc->uvopts))) {
+    while (!IsDebuggerPresent()) Sleep(1000);
+    __debugbreak();
     ELOG("uv_spawn failed: %s", uv_strerror(status));
     return status;
   }

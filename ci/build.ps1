@@ -96,6 +96,8 @@ cmake --build . --config $cmakeBuildType -- $cmakeGeneratorArgs ; exitIfFailed
 bin\nvim --version ; exitIfFailed
 
 # Functional tests
+$env:TEST_FILE='test/functional/api/vim_spec.lua'
+$env:TEST_TAG='test'
 # The $LastExitCode from MSBuild can't be trusted
 $failed = $false
 # Temporarily turn off tracing to reduce log file output
