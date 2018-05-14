@@ -11613,6 +11613,11 @@ static char **tv_to_argv(typval_T *cmd_tv, const char **cmd, bool *executable)
   return argv;
 }
 
+#ifdef _MSC_VER
+// MSVC optimizations are disabled for this function because it
+// incorrectly generates an empty string for SHM_ALL.
+#pragma optimize("", off)
+#endif
 // "jobstart()" function
 static void f_jobstart(typval_T *argvars, typval_T *rettv, FunPtr fptr)
 {
@@ -11687,15 +11692,13 @@ static void f_jobstart(typval_T *argvars, typval_T *rettv, FunPtr fptr)
   Channel *chan = channel_job_start(argv, on_stdout, on_stderr, on_exit, pty,
                                     rpc, detach, cwd, width, height, term_name,
                                     &rettv->vval.v_number);
-  if (rettv->vval.v_number < 1) {
-    DWORD last_error = GetLastError();
-    while (!IsDebuggerPresent()) Sleep(1000);
-    __debugbreak();
-  }
   if (chan) {
     channel_create_event(chan, NULL);
   }
 }
+#ifdef _MSC_VER
+#pragma optimize("", on)
+#endif
 
 // "jobstop()" function
 static void f_jobstop(typval_T *argvars, typval_T *rettv, FunPtr fptr)
