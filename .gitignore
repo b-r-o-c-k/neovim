@@ -1,7 +1,5 @@
 # Tools
 .ropeproject/
-# Visual Studio
-/.vs/
 
 # Build/deps dir
 /build/
