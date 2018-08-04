@@ -471,6 +471,9 @@ int main(int argc, char **argv)
   create_windows(&params);
   TIME_MSG("opening buffers");
 
+  vsnvim_init_buffers();
+  vsnvim_ui_start();
+
   /* clear v:swapcommand */
   set_vim_var_string(VV_SWAPCOMMAND, NULL, -1);
 

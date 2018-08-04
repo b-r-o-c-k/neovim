@@ -1169,5 +1169,7 @@ int vsnvim_delete_char(void *vsnvim_data, linenr_T lnum, colnr_T col);
 int vsnvim_replace_line(void *vsnvim_data, linenr_T lnum, char_u *line);
 int vsnvim_replace_char(void *vsnvim_data, linenr_T lnum,
                         colnr_T col, char_u chr);
+void vsnvim_ui_start();
+void vsnvim_init_buffers();
 
 #endif /* NVIM_GLOBALS_H */
