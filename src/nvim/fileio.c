@@ -4343,10 +4343,6 @@ void shorten_fnames(int force)
       if (p == NULL || buf->b_fname == NULL)
         buf->b_fname = buf->b_ffname;
     }
-
-    /* Always make the swap file name a full path, a "nofile" buffer may
-     * also have a swap file. */
-    mf_fullname(buf->b_ml.ml_mfp);
   }
   status_redraw_all();
   redraw_tabline = TRUE;

@@ -68,8 +68,6 @@ void try_to_free_memory(void)
 
   // free any scrollback text
   clear_sb_text(true);
-  // Try to save all buffers and release as many blocks as possible
-  mf_release_all();
 
   trying_to_free = false;
 }
