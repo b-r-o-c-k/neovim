@@ -1161,4 +1161,13 @@ typedef enum {
 #define MIN_CD_SCOPE  kCdScopeWindow
 #define MAX_CD_SCOPE  kCdScopeGlobal
 
+const char_u *vsnvim_get_line(void *vsnvim_data, linenr_T lnum);
+int vsnvim_append_line(void *vsnvim_data, linenr_T lnum,
+                       char_u *line, colnr_T len);
+int vsnvim_delete_line(void *vsnvim_data, linenr_T lnum);
+int vsnvim_delete_char(void *vsnvim_data, linenr_T lnum, colnr_T col);
+int vsnvim_replace_line(void *vsnvim_data, linenr_T lnum, char_u *line);
+int vsnvim_replace_char(void *vsnvim_data, linenr_T lnum,
+                        colnr_T col, char_u chr);
+
 #endif /* NVIM_GLOBALS_H */

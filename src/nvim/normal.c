@@ -5979,10 +5979,12 @@ static void nv_replace(cmdarg_T *cap)
           if (c != NUL) {
             assert(c >= 0 && c <= UCHAR_MAX);
             ptr[curwin->w_cursor.col] = (char_u)c;
+            // ReplaceChar(curbuf, curwin->w_cursor.col, (char_u)c);
           }
         } else {
           assert(cap->nchar >= 0 && cap->nchar <= UCHAR_MAX);
           ptr[curwin->w_cursor.col] = (char_u)cap->nchar;
+          // ReplaceChar(curbuf, curwin->w_cursor.col, (char_u)cap->nchar);
         }
         if (p_sm && msg_silent == 0)
           showmatch(cap->nchar);

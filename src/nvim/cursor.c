@@ -487,8 +487,9 @@ int gchar_cursor(void)
  */
 void pchar_cursor(char_u c)
 {
-  *(ml_get_buf(curbuf, curwin->w_cursor.lnum, true)
-    + curwin->w_cursor.col) = c;
+  void *vsnvim_data = curbuf->vsnvim_data;
+  vsnvim_replace_char(vsnvim_data, curwin->w_cursor.lnum,
+                      curwin->w_cursor.col, c);
 }
 
 /*

@@ -4912,7 +4912,7 @@ static void prepare_help_buffer(void)
 void fix_help_buffer(void)
 {
   linenr_T lnum;
-  char_u      *line;
+  const char_u *line;
   bool in_example = false;
 
   // Set filetype to "help".
@@ -4930,21 +4930,18 @@ void fix_help_buffer(void)
         /* End of example: non-white or '<' in first column. */
         if (line[0] == '<') {
           /* blank-out a '<' in the first column */
-          line = ml_get_buf(curbuf, lnum, TRUE);
-          line[0] = ' ';
+          vsnvim_replace_char(curbuf->vsnvim_data, lnum, 0, ' ');
         }
         in_example = false;
       }
       if (!in_example && len > 0) {
         if (line[len - 1] == '>' && (len == 1 || line[len - 2] == ' ')) {
           /* blank-out a '>' in the last column (start of example) */
-          line = ml_get_buf(curbuf, lnum, TRUE);
-          line[len - 1] = ' ';
+          vsnvim_replace_char(curbuf->vsnvim_data, lnum, len - 1, ' ');
           in_example = true;
         } else if (line[len - 1] == '~') {
           /* blank-out a '~' at the end of line (header marker) */
-          line = ml_get_buf(curbuf, lnum, TRUE);
-          line[len - 1] = ' ';
+          vsnvim_replace_char(curbuf->vsnvim_data, lnum, len - 1, ' ');
         }
       }
     }

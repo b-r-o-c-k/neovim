@@ -3767,12 +3767,8 @@ static char *set_bool_option(const int opt_idx, char_u *const varp,
   }
   /* when 'swf' is set, create swapfile, when reset remove swapfile */
   else if ((int *)varp == (int *)&curbuf->b_p_swf) {
-    if (curbuf->b_p_swf && p_uc)
-      ml_open_file(curbuf);                     /* create the swap file */
-    else
-      /* no need to reset curbuf->b_may_swap, ml_open_file() will check
-       * buf->b_p_swf */
-      mf_close_file(curbuf, true);              /* remove the swap file */
+    // Swap files not supported
+    // See "https://docs.microsoft.com/en-us/visualstudio/ide/reference/autorecover-environment-options-dialog-box"
   }
   /* when 'terse' is set change 'shortmess' */
   else if ((int *)varp == &p_terse) {

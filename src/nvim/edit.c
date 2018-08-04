@@ -7615,13 +7615,14 @@ static bool ins_bs(int c, int mode, int *inserted_space_p)
          * again when auto-formatting. */
         if (has_format_option(FO_AUTO)
             && has_format_option(FO_WHITE_PAR)) {
-          char_u  *ptr = ml_get_buf(curbuf, curwin->w_cursor.lnum,
-              TRUE);
+          const char_u *ptr = ml_get_buf(curbuf, curwin->w_cursor.lnum,
+              false);
           int len;
 
           len = (int)STRLEN(ptr);
           if (len > 0 && ptr[len - 1] == ' ')
-            ptr[len - 1] = NUL;
+            vsnvim_delete_char(curbuf->vsnvim_data, curwin->w_cursor.lnum,
+                                len - 1);
         }
 
         do_join(2, FALSE, FALSE, FALSE, false);

@@ -1617,7 +1617,7 @@ static void mb_adjust_opend(oparg_T *oap)
 static inline void pchar(pos_T lp, int c)
 {
     assert(c <= UCHAR_MAX);
-    *(ml_get_buf(curbuf, lp.lnum, true) + lp.col) = (char_u)c;
+    vsnvim_replace_char(curbuf->vsnvim_data, lp.lnum, lp.col, (char_u)c);
 }
 
 /*

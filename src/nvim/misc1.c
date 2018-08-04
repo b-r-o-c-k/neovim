@@ -1654,7 +1654,7 @@ int del_bytes(colnr_T count, bool fixpos_arg, bool use_delcombine)
 
   // If the old line has been allocated the deletion can be done in the
   // existing line. Otherwise a new line has to be allocated.
-  bool was_alloced = ml_line_alloced();     // check if oldp was allocated
+  const bool was_alloced = false;     // check if oldp was allocated
   char_u *newp;
   if (was_alloced) {
     newp = oldp;                            // use same allocated memory
