@@ -3027,6 +3027,12 @@ return {
     func='ex_menu',
   },
   {
+    command='vscmd',
+    flags=bit.bor(RANGE, EXTRA),
+    addr_type=ADDR_LINES,
+    func='ex_vscmd',
+  },
+  {
     command='vsplit',
     flags=bit.bor(BANG, FILE1, RANGE, NOTADR, EDITCMD, ARGOPT, TRLBAR),
     addr_type=ADDR_LINES,

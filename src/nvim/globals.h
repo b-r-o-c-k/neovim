@@ -1171,5 +1171,6 @@ int vsnvim_replace_char(void *vsnvim_data, linenr_T lnum,
                         colnr_T col, char_u chr);
 void vsnvim_ui_start();
 void vsnvim_init_buffers();
+void vsnvim_execute_command(const char_u *command);
 
 #endif /* NVIM_GLOBALS_H */

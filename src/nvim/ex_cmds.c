@@ -6438,3 +6438,8 @@ void ex_oldfiles(exarg_T *eap)
     }
   }
 }
+
+void ex_vscmd(exarg_T *eap)
+{
+  vsnvim_execute_command(eap->arg);
+}
